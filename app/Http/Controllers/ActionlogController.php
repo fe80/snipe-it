@@ -20,12 +20,12 @@ class ActionlogController extends Controller
 
         $contents = file_get_contents($file, false, stream_context_create(['http' => ['ignore_errors' => true]]));
         if ($contents === false) {
-            \Log::warn('File '.$file.' not found');
+            \Log::warning('File '.$file.' not found');
             return false;
         } else {
             return Response::make($contents)->header('Content-Type', $filetype);
         }
-       
+
     }
     public function getStoredEula($filename){
         $this->authorize('view', \App\Models\Asset::class);
